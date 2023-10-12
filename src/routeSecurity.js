@@ -42,7 +42,7 @@ function createAuthCheck(operation, authorizers) {
   const securityExt = operation['x-security']
 
   return function authorize(req, res, next) {
-    return Promise.all(security.map(scheme => {
+    Promise.all(security.map(scheme => {
       const id = Object.keys(scheme)[0]
       if (!id || id.startsWith('x-')) return null
 
